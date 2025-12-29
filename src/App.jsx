@@ -7,6 +7,7 @@ import { CollectionsSection } from './components/sections/CollectionsSection'
 import { StoriesSection } from './components/sections/StoriesSection'
 import { LoginPage } from './components/auth/LoginPage'
 import { SignupPage } from './components/auth/SignupPage'
+import Whatsapp from "../public/whatsapp.png";
 
 function App() {
   const [view, setView] = useState('home') // 'home' | 'login' | 'signup'
@@ -52,6 +53,9 @@ function App() {
               <button className="hover:text-sky-700">About</button>
               <button className="hover:text-sky-700">Contact</button>
               <button className="hover:text-sky-700">Terms</button>
+              <button className="hover:text-sky-700 fixed bottom-5 right-5 ">
+                <img src={Whatsapp} alt="" className='size-10' />
+              </button>
             </div>
           </div>
         </footer>

@@ -13,14 +13,14 @@ export function Navbar({ onLoginClick, onSignupClick }) {
           </div>
         </div>
 
-        <nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
+        {/* <nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 md:flex">
           <button className="hover:text-sky-600">Inspiration</button>
           <button className="hover:text-sky-600">Trips</button>
           <button className="hover:text-sky-600">Hotels</button>
           <button className="hover:text-sky-600">Weekend Getaways</button>
-        </nav>
+        </nav> */}
 
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <Button
             type="button"
             variant="ghost"
@@ -33,7 +33,7 @@ export function Navbar({ onLoginClick, onSignupClick }) {
           <Button type="button" variant="secondary" size="sm" onClick={onSignupClick}>
             Sign up
           </Button>
-        </div>
+        </div> */}
       </div>
     </header>
   )
