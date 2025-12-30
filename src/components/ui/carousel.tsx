@@ -119,7 +119,7 @@ export const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttribute
       ref={ref}
       role="group"
       aria-roledescription="slide"
-      className={cn("min-w-0 shrink-0 grow-0 basis-full pl-4", className)}
+      className={cn("min-w-0 shrink-0 grow-0 basis-full", className)}
       {...props}
     />
   )

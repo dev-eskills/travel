@@ -27,10 +27,10 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative h-[85vh] w-full overflow-hidden bg-slate-950 text-white">
+    <section className="relative h-[85vh] w-full overflow-hidden bg-slate-950 text-white group">
       {/* Full-Screen Carousel */}
       <Carousel plugins={[plugin]} opts={{ loop: true }} className="h-full w-full">
-        <CarouselContent className="h-[85vh] -ml-0">
+        <CarouselContent className="h-[85vh] ml-0">
           <CarouselItem className="p-0 pl-0">
             <img
               src="https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg"
@@ -61,8 +61,8 @@ export function HeroSection() {
           </CarouselItem>
         </CarouselContent>
 
-        <CarouselPrevious className="left-8 bg-white/80 text-black opacity-30 hover:opacity-100 hover:bg-white" />
-        <CarouselNext className="right-8 bg-white/80 text-black opacity-30 hover:opacity-100 hover:bg-white" />
+        <CarouselPrevious className="left-8 bg-white/80 text-black opacity-0 group-hover:opacity-100 hover:bg-white" />
+        <CarouselNext className="right-8 bg-white/80 text-black opacity-0 group-hover:opacity-100 hover:bg-white" />
       </Carousel>
 
       {/* Fixed gradient class name */}
