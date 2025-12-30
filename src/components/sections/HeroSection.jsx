@@ -1,62 +1,144 @@
-import { Badge } from '../ui/badge'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
+import * as React from "react"
+import Autoplay from "embla-carousel-autoplay"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "../ui/carousel"
+import { Badge } from "../../components/ui/badge"
+import { Button } from "../../components/ui/button"
+import { Input } from "../../components/ui/input"
 
 export function HeroSection() {
+  // Autoplay plugin
+  const plugin = React.useMemo(() => Autoplay({ delay: 5000, stopOnInteraction: false }), [])
+
+  // Control search card animation
+  const [showCard, setShowCard] = React.useState(false)
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCard(true)
+    }, 1000) // Show after 1 second
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <section className="relative border-b border-slate-200 bg-slate-950 text-white">
-      <div className="absolute inset-0">
-        <img
-          src="https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg"
-          alt="Mountain landscape"
-          className="h-full w-full object-cover opacity-70"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-slate-900/10" />
-      </div>
+    <section className="relative h-[85vh] w-full overflow-hidden bg-slate-950 text-white">
+      {/* Full-Screen Carousel */}
+      <Carousel plugins={[plugin]} opts={{ loop: true }} className="h-full w-full">
+        <CarouselContent className="h-[85vh] -ml-0">
+          <CarouselItem className="p-0 pl-0">
+            <img
+              src="https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg"
+              alt="Snowy mountains"
+              className="h-full w-full object-cover"
+            />
+          </CarouselItem>
+          <CarouselItem className="p-0 pl-0">
+            <img
+              src="https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg"
+              alt="Tropical beach"
+              className="h-full w-full object-cover"
+            />
+          </CarouselItem>
+          <CarouselItem className="p-0 pl-0">
+            <img
+              src="https://images.pexels.com/photos/3581369/pexels-photo-3581369.jpeg"
+              alt="Pink palace"
+              className="h-full w-full object-cover"
+            />
+          </CarouselItem>
+          <CarouselItem className="p-0 pl-0">
+            <img
+              src="https://images.prismic.io/travelfika/Z8Gk8Z7c43Q3gXjN_dubai-4044183.jpg?auto=format,compress"
+              alt="Dubai"
+              className="h-full w-full object-cover"
+            />
+          </CarouselItem>
+        </CarouselContent>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 lg:px-0 lg:py-16">
-        <div className="max-w-xl space-y-4">
-          <Badge className="bg-black/40 text-sky-100 backdrop-blur">Discover. Plan. Book.</Badge>
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
-            Everything you need to plan your next trip.
-          </h1>
-          <p className="max-w-lg text-sm text-slate-100 sm:text-base">
-            Explore curated itineraries, read real travel experiences, and book stays or activities—all in one place.
-          </p>
-        </div>
+        <CarouselPrevious className="left-8 bg-white/80 text-black opacity-30 hover:opacity-100 hover:bg-white" />
+        <CarouselNext className="right-8 bg-white/80 text-black opacity-30 hover:opacity-100 hover:bg-white" />
+      </Carousel>
 
-        <div className="max-w-2xl rounded-2xl bg-white/95 p-3 shadow-xl shadow-black/40 backdrop-blur">
-          <div className="mb-3 flex gap-2 rounded-xl bg-slate-100 p-1 text-xs font-medium text-slate-600 sm:text-sm">
-            <button className="flex-1 rounded-lg bg-white px-3 py-1.5 text-slate-900 shadow-sm">
-              Search Destinations
-            </button>
-            <button className="flex-1 rounded-lg px-3 py-1.5 hover:bg-white">Search Hotels</button>
-            <button className="flex-1 rounded-lg px-3 py-1.5 hover:bg-white">Search Trips</button>
+      {/* Fixed gradient class name */}
+      <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+
+      {/* Content */}
+      <div className="absolute inset-0 z-10 flex items-end pb-12">
+        <div className="mx-auto w-full max-w-6xl px-6">
+          <div className="max-w-2xl space-y-6">
+            <Badge className="bg-white backdrop-blur-md border border-white/30">
+              Discover. Plan. Book.
+            </Badge>
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              Everything you need to plan your next trip.
+            </h1>
+            <p className="text-lg text-slate-200 sm:text-xl">
+              Explore curated itineraries, read real travel experiences, and book stays or activities—all in one place.
+            </p>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <div className="flex-1 space-y-1.5">
-              <label className="text-xs font-medium text-slate-700">Where do you want to go?</label>
-              <div className="relative">
-                <Input placeholder="Search for destination, city or activity" className="pr-10" />
-                <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-400">
-                  🔍
-                </span>
+          {/* Search Card with Slide-Up Animation */}
+          <div
+            className={`
+              mt-12 max-w-3xl rounded-2xl bg-white/95 p-8 shadow-2xl backdrop-blur-md
+              transition-all duration-1000 ease-out
+              ${showCard
+                ? "translate-y-0 opacity-100"
+                : "translate-y-40 opacity-0"
+              }
+            `}
+          >
+            <div className="mb-6 flex flex-wrap gap-3">
+              <button className="rounded-lg bg-sky-600 px-6 py-3 text-white font-medium shadow hover:bg-sky-700 transition">
+                Search Destinations
+              </button>
+              <button className="rounded-lg bg-slate-200 px-6 py-3 text-slate-700 font-medium hover:bg-slate-300 transition">
+                Search Hotels
+              </button>
+              <button className="rounded-lg bg-slate-200 px-6 py-3 text-slate-700 font-medium hover:bg-slate-300 transition">
+                Search Trips
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-6 sm:flex-row">
+              <div className="flex-1">
+                <label className="mb-2 block text-sm font-medium text-slate-700">
+                  Where do you want to go?
+                </label>
+                <div className="relative">
+                  <Input
+                    placeholder="Search for destination, city or activity"
+                    className="pr-12 text-slate-900"
+                  />
+                  <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
+                    🔍
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
+                <Button size="lg" className="bg-sky-600 hover:bg-sky-700">
+                  Search
+                </Button>
+                <Button size="lg" variant="outline" className="border-slate-300">
+                  I'm flexible
+                </Button>
               </div>
             </div>
-            <div className="flex flex-1 flex-col gap-3 sm:max-w-[180px] sm:flex-none sm:flex-row">
-              <Button className="w-full bg-sky-600 hover:bg-sky-700 sm:flex-1">Search</Button>
-              <Button variant="outline" className="w-full sm:flex-1">
-                I&apos;m flexible
-              </Button>
-            </div>
-          </div>
 
-          <p className="mt-3 text-[11px] text-slate-500">Popular: Manali, Bali, Europe, Kashmir, Maldives</p>
+            <p className="mt-6 text-sm text-slate-500">
+              Popular: Riyadh, Jeddah, AlUla, Madain Saleh, Edge of the World, Red Sea
+            </p>
+          </div>
         </div>
       </div>
     </section>
   )
 }
-
-
