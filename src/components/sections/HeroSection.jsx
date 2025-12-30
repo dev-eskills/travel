@@ -29,35 +29,47 @@ export function HeroSection() {
   return (
     <section className="relative h-[85vh] w-full overflow-hidden bg-slate-950 text-white group">
       {/* Full-Screen Carousel */}
-      <Carousel plugins={[plugin]} opts={{ loop: true }} className="h-full w-full">
+      <Carousel plugins={[plugin]} opts={{ loop: true }} className="h-full w-full overflow-hidden group">
         <CarouselContent className="h-[85vh] ml-0">
-          <CarouselItem className="p-0 pl-0">
-            <img
-              src="https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg"
-              alt="Snowy mountains"
-              className="h-full w-full object-cover"
-            />
+
+          <CarouselItem className="p-0 overflow-hidden">
+            <div className="h-full w-full overflow-hidden">
+              <img
+                src="https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg"
+                alt="Snowy mountains"
+                className="h-full w-full object-cover transition-transform duration-7000 ease-out group-hover:scale-110"
+              />
+            </div>
           </CarouselItem>
-          <CarouselItem className="p-0 pl-0">
-            <img
-              src="https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg"
-              alt="Tropical beach"
-              className="h-full w-full object-cover"
-            />
+
+          <CarouselItem className="p-0 overflow-hidden">
+            <div className="h-full w-full overflow-hidden">
+              <img
+                src="https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg"
+                alt="Tropical beach"
+                className="h-full w-full object-cover transition-transform duration-7000 ease-out group-hover:scale-110"
+              />
+            </div>
           </CarouselItem>
-          <CarouselItem className="p-0 pl-0">
-            <img
-              src="https://images.pexels.com/photos/3581369/pexels-photo-3581369.jpeg"
-              alt="Pink palace"
-              className="h-full w-full object-cover"
-            />
+
+          <CarouselItem className="p-0 overflow-hidden">
+            <div className="h-full w-full overflow-hidden">
+              <img
+                src="https://images.pexels.com/photos/3581369/pexels-photo-3581369.jpeg"
+                alt="Pink palace"
+                className="h-full w-full object-cover transition-transform duration-7000 ease-out group-hover:scale-110"
+              />
+            </div>
           </CarouselItem>
-          <CarouselItem className="p-0 pl-0">
-            <img
-              src="https://images.prismic.io/travelfika/Z8Gk8Z7c43Q3gXjN_dubai-4044183.jpg?auto=format,compress"
-              alt="Dubai"
-              className="h-full w-full object-cover"
-            />
+
+          <CarouselItem className="p-0 overflow-hidden">
+            <div className="h-full w-full overflow-hidden">
+              <img
+                src="https://images.prismic.io/travelfika/Z8Gk8Z7c43Q3gXjN_dubai-4044183.jpg?auto=format,compress"
+                alt="Dubai"
+                className="h-full w-full object-cover transition-transform duration-7000 ease-out group-hover:scale-110"
+              />
+            </div>
           </CarouselItem>
         </CarouselContent>
 
